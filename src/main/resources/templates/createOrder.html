@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Create Order</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<!--Create order button-->
+		<h1>Create an order</h1>
+		<form action="#" th:action="@{/orders/createOrder}" th:object="${newOrder}" method="POST">
+			<table class="center">
+
+				<tr>
+					<td>
+						<h1>Product</h1>
+						
+			
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<h1>Quantity</h1>
+						<!--Size-->
+						<input placeholder="Quantity: " type="text" th:field="*{quantity}">
+
+					</td>
+				</tr>
+
+			</table>
+			<tr>
+
+				<div align="center">
+					<input type="submit" value="Submit" />
+				</div>
+			</tr>
+			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+			<div th:each="err : ${#fields.errors('*')} ">
+				<span style="color : red" th:text="${err}" class="fieldError"></span>
+			</div>
+		</form>
+	</div>
+</body>

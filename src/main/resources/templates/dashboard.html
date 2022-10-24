@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Products</title>
+	
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<!--Create order button-->
+		<h1>Products</h1>
+		<h3>Select an option below</h3>
+		<form action="#" th:action="@{/products/createProduct}" method="POST">
+
+			<button type="submit" style="background-color: Grey; color: white">Create Product</button>
+
+		</form>
+		<br>
+		<form action="#" th:action="@{/products/displayProducts}" method="POST">
+
+			<button type="submit" style="background-color: Grey; color: white">Display Product</button>
+
+		</form>
+
+		
+
+	</div>
+
+</body>
+
+
+</html>

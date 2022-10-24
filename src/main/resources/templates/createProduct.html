@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Create Product</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<!--Create order button-->
+		<form action="#" th:action="@{/products/createProduct}" th:object="${material}" method="POST">
+			<table class="center">
+
+				<tr>
+					<td>
+						<h2>Color</h2>
+						<!--Color-->
+						<input placeholder="Color: " type="text" th:field="*{productColor}">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 style="color:red" th:if="${#fields.hasErrors('productColor')}" th:errors="*{productColor}">
+							Color Error</h5>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<h2>Size</h2>
+						<!--Size-->
+						<input placeholder="Size: " type="text" th:field="*{productSize}">
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h5 style="color:red" th:if="${#fields.hasErrors('productSize')}" th:errors="*{productSize}">
+							Size Error</h5>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<h5 style="color:red" th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}">Price Error
+						</h5>
+					</td>
+				</tr>
+
+
+
+			</table>
+			<tr>
+
+				<div align="center">
+					<input type="submit" value="Submit" />
+				</div>
+			</tr>
+			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+			<div th:each="err : ${#fields.errors('*')} ">
+				<span style="color : red" th:text="${err}" class="fieldError"></span>
+			</div>
+		</form>
+	</div>
+</body>

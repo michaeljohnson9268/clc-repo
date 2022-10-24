@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+											layout:decorate="layouts/defaultTemplate">
+<head>
+	<title>Registration Page</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+	<form action="#" th:action="@{/register/doRegister}" th:object="${registerModel}" method="POST">
+		<table>
+		<tr>
+			<td>
+				<input placeholder="First Name: " type="text" th:field="*{firstName}">
+
+				<input placeholder="Last Name: "type="text" th:field="*{lastName}">
+				<br/>
+				<h5 style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</h5>
+				<h5 style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</h5>
+
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<input placeholder="Username: " type="text" th:field="*{credentials.username}">
+		
+				<input placeholder="Password: " type="password" th:field="*{credentials.password}">
+				<br/>
+
+				<h5 style="color: red" th:if="${#fields.hasErrors('credentials.password')}" th:errors="*{credentials.password}">Password error</h5>
+				<h5 style="color: red" th:if="${#fields.hasErrors('credentials.username')}" th:errors="*{credentials.username}">Username error</h5>
+
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<input placeholder="Email: " type="email" th:field="*{email}">
+				
+				<input placeholder="Phone: " type="text" th:field="*{phone}">
+				<br/>
+
+				<h5 style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</h5>
+				<h5 style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone error</h5>
+
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<div align="center">
+				<input type="submit" value="Submit"/>
+				</div>
+			</td>
+			</tr>
+		</table>
+		<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+		<div th:each="err : ${#fields.errors('*')}">
+			<span style="color:red" th:text="${err}" class="fieldError"></span>
+	</form>
+	</div>
+</body>
+</html>

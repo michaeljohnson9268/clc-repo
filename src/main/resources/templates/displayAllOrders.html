@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Display Ordersx</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="row" th:fragment="list" xmlns:th="http://www.thymeleaf.org">
+			<div th:each="order : ${orders}" class="col-sm-4">
+				<div class="card mb-3">
+
+					<div class="card-body">
+						<h4 class="card-title">Order ID</h4>
+						<h5 class="card-title" th:text="${order.id}">Order ID</h5>
+						<h4 class="card-title">Order Number</h4>
+						<h5 class="card-title" th:text="${order.orderNumber}">Product name</h5>
+						<h4 class="card-title">Customer ID</h4>
+						<h5 class="card-title" th:text="${order.customer}">Product name</h5>
+						<h4 class="card-title">Product</h4>
+						<h5 class="card-text" th:text="${order.product.productColor}">Product name</h5>					
+						<h5 class="card-text" th:text="${order.product.productSize}">Product name</h5>						
+						<p class="card-text" th:text="${order.product.productPrice}">Price</p>
+						<h4 class="card-title">Quantity</h4>
+						<h5 class="card-title" th:text="${order.quantity}">Product name</h5>
+
+
+						<a th:href="@{/orders/displayEdit/{id}(id=${order.id})}">Edit</a>
+
+						<a th:href="@{/orders/delete/{id}(id=${order.id})}">Delete</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
+</html>

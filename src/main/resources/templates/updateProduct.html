@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+<head>
+	<title>Update Product</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<form th:action="@{/products/doEdit/{id} (id=${productId})}" th:object="${editProduct}" method="POST">
+			<input type="hidden" th:attr="name='id'" th:value="${productId}" />
+
+			<div class="mb-3">
+				<input type="text" th:field="*{productId}" id="id" hidden>
+			</div>
+			<div class="mb-3">
+				<label>Color</label>
+				<input type="text" th:field="*{productColor}" id="color">
+			</div>
+
+			<div class="mb-3">
+				<label>Size</label>
+				<input type="text" th:field="*{productSize}" id="size">
+			</div>
+
+			<div class="mb-3">
+				<label>Price</label>
+				<input type="text" th:field="*{productPrice}" id="price">
+			</div>
+
+
+
+
+			<div align="center">
+				<input type="submit" style="background: green; width: 75px; height: 30px;" value="Update" />
+			</div>
+
+			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+			<div th:each="err : ${#fields.errors('*')} ">
+				<span style="color : red" th:text="${err}" class="fieldError"></span>
+			</div>
+		</form>
+		<form action="#" th:action="@{/products/displayProducts}" method="POST">
+
+			<button type="submit" style="background-color: Grey; color: white">Cancel</button>
+
+		</form>
+	</div>
+</body>
+
+</html>

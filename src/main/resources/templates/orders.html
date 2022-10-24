@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="layouts/defaultTemplate">
+<head>
+	<meta charset="UTF-8">
+	<title>Orders</title>
+</head>
+	<body>
+	<div layout:fragment="content">
+
+		<form action="#" th:action="@{/products/createProduct}" th:object="${material}" method="POST">
+
+			<button type="submit" style="background-color: Grey; color: white">Create Product</button>
+
+		</form>
+
+		<div class="row" th:fragment="list" xmlns:th="http://www.thymeleaf.org">
+			<div th:each="product : ${products}" class="col-sm-4">
+				<div class="card mb-3">
+
+					<div class="card-body">
+						<h5 class="card-title" th:text="${product.productId}" hidden>Product ID</h5>
+
+						<h5 class="card-title" th:text="${product.productColor}">Product Color</h5>
+						<h5 class="card-title" th:text="${product.productSize}">Product Size</h5>
+
+						<p class="card-text" th:text="${product.productPrice}">Price</p>
+
+						<p class="card-text" th:text="${product.quantity}">Price</p>
+
+						<p class="card-text" th:text="${product.userId}" hidden>User ID</p>
+
+						<a th:href="@{/products/displayEdit/{id}(id=${product.productId})}">Edit</a>
+
+						<a th:href="@{/products/displayDelete/{id}(id=${product.productId})}">Delete</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+</body>
+</html>
