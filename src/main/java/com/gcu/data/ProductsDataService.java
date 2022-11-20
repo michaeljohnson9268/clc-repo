@@ -116,7 +116,7 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 			}
 		} catch (Exception c) {
 		    
-		    c.printStackTrace();
+		    logger.debug("Product Error: Create Product  {}", c);
 			return -1;
 
 		}
