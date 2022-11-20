@@ -10,11 +10,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import com.gcu.controllers.ProductsController;
 import com.gcu.model.ProductModel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class ProductsDataService implements DataAccessInterface<ProductModel> {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
+
+    
 	@Autowired
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
@@ -44,7 +51,8 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 											srs.getFloat("price")));
 			}
 		} catch (Exception c) {
-			c.printStackTrace();
+		    logger.debug("Product Error: Unable to find Products  {}", c);
+
 		}
 
 		return orders;
@@ -77,6 +85,7 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 		
 		
 		catch(Exception ex) {
+		    logger.debug("Product Error: Unable to find Product  {}", ex);
 			return null;
 		}
 		
@@ -106,7 +115,8 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 				return 0;
 			}
 		} catch (Exception c) {
-			c.printStackTrace();
+		    
+		    c.printStackTrace();
 			return -1;
 
 		}
