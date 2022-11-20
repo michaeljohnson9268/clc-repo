@@ -21,6 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gcu.business.ProductsBusinessServiceInterface;
 import com.gcu.model.ProductModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
@@ -28,6 +31,7 @@ public class ProductsController {
 	@Autowired
 	ProductsBusinessServiceInterface service;
 	
+	private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 	
 	@GetMapping("/")
 	public String display(@RequestParam(value="material", required=false)ProductModel material ,Model model) 
@@ -41,12 +45,11 @@ public class ProductsController {
 	{
 		List<ProductModel> productList = new ArrayList<ProductModel>(); 
 		
-//		ProductModel newProduct = new ProductModel();
-//		newProduct = service.findById(1);
 
 		
-//		productList.add(newProduct);
 		productList = service.findAll();
+		
+		logger.debug("Products {}", productList);
 		
 		//Sends new product model to dashboard page.
 		model.addAttribute("title", "Products");
@@ -63,6 +66,7 @@ public class ProductsController {
 			return "createProduct";
 		}
 
+		logger.debug("New Product {}", material);
 		
 		service.insert(material);
 		//Sends orders to next page
@@ -71,7 +75,7 @@ public class ProductsController {
 
 		productList = service.findAll();
 		
-		
+		logger.debug("Updated Products {}", productList);
 		
 		model.addAttribute("title","My Products");
 		model.addAttribute("products", productList);
@@ -107,12 +111,16 @@ public class ProductsController {
 		// if there were binding errors, or product deleting error
 		if (bindingResult.hasErrors() || isUpdated == false) {
 
+		    logger.debug("Failed to Edit Product");
+		    
 			model.addAttribute("title", "Product Form");
 
 
 			return "updateProduct";
 		}
 
+		logger.debug("Edited Product {}", newProduct);
+		
 		List<ProductModel> productList = service.findAll();
 
 		// pass list to view
@@ -131,6 +139,8 @@ public class ProductsController {
         ProductModel material = service.findById(prodId);
         service.remove(material);
 
+        logger.debug("Deleted Product {}", material);
+        
      // Service finds all products
         List<ProductModel> productList = service.findAll();
 
