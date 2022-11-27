@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("/dashboard")
 public class DashboardController {
 	
-
+  //Logging Setup for the file
     private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
 	
 	@GetMapping("/")

@@ -5,8 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gcu.model.RegisterModel;
-
 @Controller
 @RequestMapping("/")
 public class IndexController 
@@ -15,9 +13,10 @@ public class IndexController
 	@GetMapping("/")
 	public String display(Model model) 
 	{
+	    
 		// Display register Form View
 		model.addAttribute("title", "");
-		model.addAttribute("registerModel", new RegisterModel());
+
 
 		return "index";
 	}

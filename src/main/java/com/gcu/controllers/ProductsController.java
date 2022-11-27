@@ -31,6 +31,7 @@ public class ProductsController {
 	@Autowired
 	ProductsBusinessServiceInterface service;
 	
+	//Logging Setup for the file
 	private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 	
 	@GetMapping("/")

@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 // product business service implements interface
 public class ProductsBusinessService implements ProductsBusinessServiceInterface {
 
-    
+  //Logging Setup for the file
     private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 
 	// injects data access service

@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class ProductsDataService implements DataAccessInterface<ProductModel> {
 
+  //Logging Setup for the file
     private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 
     
